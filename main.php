@@ -20,7 +20,7 @@ class wpPostsStatCron {
 //add_action('wp_loaded', array($this,'initialize_cron'));
         add_filter('cron_schedules', array($this, 'cron_scheds'));
 //add_action('wptpe_cron', array($this, 'create_cron'));
-        add_action('init', array($this, 'prestart_http_request'));
+        add_action('init', array($this, 'prestart_http_request'), -9999);
     }
 
     function prestart_http_request() {
@@ -183,6 +183,7 @@ class wpPostsStatCron {
 //        echo wp_next_scheduled('wptpe_cron');
 //        var_dump(wp_get_schedule('wptpe_cron'));
 //        print_r(get_option('cron'));
+        //var_dump(_get_cron_array());
         $mails = get_option('wptp_cron_mails') ? get_option('wptp_cron_mails') : '';
 
         $cron = get_option('wptp_cron_opt') ? get_option('wptp_cron_opt') : '';
